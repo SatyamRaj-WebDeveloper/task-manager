@@ -16,109 +16,49 @@
   --border: #27272a;
 }
 
-body, html {
+/* 1. FORCE THE ENTIRE PAGE TO CENTER */
+html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
   width: 100%;
+  height: 100%;
+  display: flex; /* Force flex on the root level */
+  flex-direction: column;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center; /* This is the Desktop center fix */
+  align-items: center;     /* This is the Vertical center fix */
 }
 
 .app-wrapper {
+  width: 100%;
   min-height: 100vh;
-  width: 100%; /* Changed from 100vw to 100% to prevent horizontal scroll */
   background-color: var(--bg);
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 10px; /* Reduced padding for more mobile space */
+  align-items: center;
+  padding: 20px;
   box-sizing: border-box;
 }
 
+/* 2. THE CARD CONTAINER */
 .container {
   width: 100%;
-  max-width: 500px;
+  max-width: 550px; /* Limits size on big screens */
   background: var(--card);
   padding: 30px;
   border-radius: 20px;
   border: 1px solid var(--border);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
   color: var(--text-main);
-  box-sizing: border-box; /* Added to ensure padding doesn't increase width */
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-h1 { margin: 0; color: var(--text-main); font-size: 1.8rem; }
-
-.theme-toggle {
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--bg);
-  color: var(--text-main);
-  cursor: pointer;
-}
-
-.input-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.input-group input {
-  padding: 14px;
-  background: var(--bg);
-  color: var(--text-main);
-  border: 2px solid var(--border);
-  border-radius: 10px;
-  outline: none;
-  width: 100%; /* Ensure full width */
   box-sizing: border-box;
 }
 
-.input-group button {
-  padding: 14px;
-  background: var(--accent);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.filter-bar {
-  display: flex;
-  gap: 5px;
-  background: var(--bg);
-  padding: 5px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-.filter-btn {
-  flex: 1;
-  padding: 8px;
-  border: none;
-  background: transparent;
-  color: var(--text-sub);
-  cursor: pointer;
-  font-weight: 600;
-  border-radius: 6px;
-  font-size: 0.9rem; /* Slightly smaller for mobile */
-}
-
-.filter-btn.active {
-  background: var(--card);
-  color: var(--accent);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
+/* 3. TASK CONTENT FIXES (for the long text wrapping) */
 .task-item {
   display: flex;
   justify-content: space-between;
@@ -128,8 +68,7 @@ h1 { margin: 0; color: var(--text-main); font-size: 1.8rem; }
   border: 1px solid var(--border);
   border-radius: 12px;
   margin-bottom: 10px;
-  color: var(--text-main);
-  gap: 10px; /* Ensures space between text and delete button */
+  gap: 15px;
 }
 
 .task-content {
@@ -137,27 +76,34 @@ h1 { margin: 0; color: var(--text-main); font-size: 1.8rem; }
   align-items: center;
   gap: 10px;
   flex: 1;
-  min-width: 0; /* Critical: allows flex child to shrink below content size */
+  min-width: 0; /* Critical for wrapping */
 }
 
 .task-content span {
-  white-space: normal; /* Allows text to wrap */
-  word-break: break-all; /* Breaks long strings/URLs */
-  font-size: 0.95rem;
+  word-break: break-all;
+  white-space: normal;
+  font-size: 1rem;
+  color: var(--text-main);
 }
 
 .del-btn {
+  flex-shrink: 0; /* Prevents button squishing */
   background: #fee2e2;
   color: #ef4444;
   border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
   cursor: pointer;
-  flex-shrink: 0; /* Prevents button from squishing */
+  font-weight: 600;
 }
 
-@media (max-width: 480px) {
-  .container { padding: 20px 15px; }
-  h1 { font-size: 1.4rem; }
-  .filter-btn { font-size: 0.8rem; padding: 6px; }
-}
+/* REST OF YOUR STYLES (Header, Inputs, etc.) */
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+h1 { margin: 0; font-size: 1.8rem; color: var(--text-main); }
+.theme-toggle { padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text-main); cursor: pointer; }
+.input-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.input-group input { padding: 14px; background: var(--bg); color: var(--text-main); border: 2px solid var(--border); border-radius: 10px; outline: none; }
+.input-group button { padding: 14px; background: var(--accent); color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+.filter-bar { display: flex; gap: 5px; background: var(--bg); padding: 5px; border-radius: 10px; margin-bottom: 20px; }
+.filter-btn { flex: 1; padding: 8px; border: none; background: transparent; color: var(--text-sub); cursor: pointer; font-weight: 600; border-radius: 6px; }
+.filter-btn.active { background: var(--card); color: var(--accent); box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
