@@ -1,0 +1,163 @@
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --accent: #10b981;
+  --border: #e2e8f0;
+}
+
+.dark {
+  --bg: #09090b;
+  --card: #18181b;
+  --text-main: #fafafa;
+  --text-sub: #a1a1aa;
+  --accent: #22c55e;
+  --border: #27272a;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.app-wrapper {
+  min-height: 100vh;
+  width: 100%; /* Changed from 100vw to 100% to prevent horizontal scroll */
+  background-color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px; /* Reduced padding for more mobile space */
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  background: var(--card);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  color: var(--text-main);
+  box-sizing: border-box; /* Added to ensure padding doesn't increase width */
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h1 { margin: 0; color: var(--text-main); font-size: 1.8rem; }
+
+.theme-toggle {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  padding: 14px;
+  background: var(--bg);
+  color: var(--text-main);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  width: 100%; /* Ensure full width */
+  box-sizing: border-box;
+}
+
+.input-group button {
+  padding: 14px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 5px;
+  background: var(--bg);
+  padding: 5px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text-sub);
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 6px;
+  font-size: 0.9rem; /* Slightly smaller for mobile */
+}
+
+.filter-btn.active {
+  background: var(--card);
+  color: var(--accent);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  color: var(--text-main);
+  gap: 10px; /* Ensures space between text and delete button */
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0; /* Critical: allows flex child to shrink below content size */
+}
+
+.task-content span {
+  white-space: normal; /* Allows text to wrap */
+  word-break: break-all; /* Breaks long strings/URLs */
+  font-size: 0.95rem;
+}
+
+.del-btn {
+  background: #fee2e2;
+  color: #ef4444;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  flex-shrink: 0; /* Prevents button from squishing */
+}
+
+@media (max-width: 480px) {
+  .container { padding: 20px 15px; }
+  h1 { font-size: 1.4rem; }
+  .filter-btn { font-size: 0.8rem; padding: 6px; }
+}
