@@ -1,8 +1,10 @@
-# React + Vite
+# Advanced Task Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A professional React-based task management application.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- **MERN Stack Style:** Built with React (Vite) and Context API.
+- **Optimized:** Implemented `React.memo`, `useCallback`, and `useMemo` for performance.
+- **Persistence:** Custom `useLocalStorage` hook for data retention.
+- **UX/UI:** Dark mode toggle, CSS animations, and fully responsive design.
+- **Drag-and-Drop:** Task reordering using `react-beautiful-dnd`.
